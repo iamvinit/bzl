@@ -52,9 +52,3 @@ kinds = genrule,test_rule
 | `Ctrl+K` | Select target rules (`genrule`, `sh_binary`, etc.) |
 | `Esc` | Go back (or Quit if on main screen) |
 
-## How it works
- 
-1. **Queries Bazel**: Runs a `bazel query` to locate targets based on your configured rule kinds (e.g., `genrule`, `sh_binary`) and scope, either locally or over SSH. Query results are cached for optimal performance.
-2. **Interactive Browsing**: Presents a fuzzy-searchable list of Bazel modules.
-3. **Explore Targets**: Drill into any module to view its available targets.
-4. **Seamless Execution**: Press `Enter` and the TUI exits, displays your command, and **replaces itself** with the `bazel` process via `os.execvp`. This ensures zero subprocess overhead—providing full TTY support, native colors, and real-time progress bars exactly as Bazel intended.
