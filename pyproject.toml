@@ -1,0 +1,17 @@
+[project]
+name = "bzl"
+version = "0.1.0"
+description = "Terminal UI for browsing and executing Bazel genrule targets"
+requires-python = ">=3.9"
+dependencies = [
+    "textual>=0.50.0",
+    "rapidfuzz>=3.0.0",
+    "pyfiglet",
+]
+
+[project.scripts]
+bzl = "bzl.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
