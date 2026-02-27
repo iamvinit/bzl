@@ -1,6 +1,10 @@
 # bzl
 
 > Terminal UI for browsing and executing Bazel `genrule` targets.
+````markdown
+# bzl
+
+> Terminal UI for browsing and executing Bazel `genrule` targets.
 
 ## Install
 
@@ -49,6 +53,13 @@ kinds = genrule,test_rule
 | `Ctrl+E` | Execute **bazel clean** immediately |
 | `Ctrl+X` | Execute **bazel clean --expunge** immediately |
 | `Ctrl+F` | Refresh Bazel query |
-| `Ctrl+K` | Select target rules (`genrule`, `sh_binary`, etc.) |
+| `Ctrl+K` | Select target rules (`genrule`, `test_rule`, etc.) |
 | `Esc` | Go back (or Quit if on main screen) |
+
+
+````
+
+## Note
+
+NB: The Bazel CLI is required to use `bzl`. Install the Bazel CLI (or `bazelisk`) following the official instructions: https://bazel.build. 
 
