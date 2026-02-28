@@ -1,4 +1,4 @@
-name: Bump Version
+name: Bump and Release Version
 
 on:
   workflow_dispatch:
