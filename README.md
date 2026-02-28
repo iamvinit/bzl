@@ -1,3 +1,4 @@
+[![PyPI version](https://img.shields.io/pypi/v/bzl.svg)](https://pypi.org/project/bzl/)
 # bzl
 
 > Terminal UI for browsing and executing Bazel targets.
