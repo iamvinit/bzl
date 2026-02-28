@@ -4,14 +4,48 @@ on:
   push:
     tags:
       - 'v*.*.*' # Triggers only when a version tag is pushed
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Release tag (e.g., v1.0.0). Required for manual releases.'
+        required: false
+        type: string
 
 jobs:
+  prepare:
+    name: Prepare Release
+    runs-on: ubuntu-latest
+    outputs:
+      release_tag: ${{ steps.set_tag.outputs.release_tag }}
+    steps:
+      - name: Set release tag
+        id: set_tag
+        run: |
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            # Tag push triggered release
+            TAG="${{ github.ref }}"
+            TAG="${TAG#refs/tags/}"
+            echo "release_tag=$TAG" >> $GITHUB_OUTPUT
+          elif [[ -n "${{ github.event.inputs.release_tag }}" ]]; then
+            # Manual release with specific tag
+            echo "release_tag=${{ github.event.inputs.release_tag }}" >> $GITHUB_OUTPUT
+          else
+            # Manual release without specific tag - error
+            echo "Error: release_tag must be provided for manual releases" >&2
+            exit 1
+          fi
+          echo "Release tag: ${{ steps.set_tag.outputs.release_tag }}"
+
   build:
     name: Build Artifacts
+    needs: prepare
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code at tag
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN_RELEASE || secrets.GITHUB_TOKEN }}
+          ref: ${{ needs.prepare.outputs.release_tag }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,7 +69,7 @@ jobs:
 
   create-release:
     name: Create GitHub Release
-    needs: build
+    needs: [prepare, build]
     runs-on: ubuntu-latest
     permissions:
       contents: write # Required to create releases and upload assets
@@ -49,6 +83,8 @@ jobs:
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          token: ${{ secrets.GITHUB_TOKEN_RELEASE || secrets.GITHUB_TOKEN }}
+          tag_name: ${{ needs.prepare.outputs.release_tag }}
           files: dist/*
           generate_release_notes: true
           draft: false
