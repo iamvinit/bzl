@@ -8,9 +8,18 @@
 
 ## Install
 
+Install the latest release directly from GitHub:
+
 ```bash
-pipx install .
+pip install https://github.com/iamvinit/bzl/releases/latest/download/bzl-*-py3-none-any.whl
 ```
+
+Or using pipx:
+```bash
+pipx install https://github.com/iamvinit/bzl/releases/latest/download/bzl-*-py3-none-any.whl
+```
+
+For a specific version, visit [GitHub Releases](https://github.com/iamvinit/bzl/releases) and substitute the version number.
 
 ## Usage
 
