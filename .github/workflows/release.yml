@@ -58,7 +58,11 @@ jobs:
           pip install build
 
       - name: Build sdist and wheel
-        run: python -m build
+        run: |
+          python -m build
+          # Duplicate the wheel and sdist to a version-less name for stable link
+          cp dist/*.whl dist/bzl-latest-py3-none-any.whl
+          cp dist/*.tar.gz dist/bzl-latest.tar.gz
 
       - name: Upload artifacts for release
         uses: actions/upload-artifact@v4
@@ -89,3 +93,24 @@ jobs:
           generate_release_notes: true
           draft: false
           prerelease: false
+
+  publish-pypi:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-dist
+          path: dist
+
+      - name: Remove duplicated latest artifacts before publishing
+        run: |
+          rm -f dist/*-latest-*.whl
+          rm -f dist/*-latest.tar.gz
+
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@release/v1
