@@ -1,6 +1,9 @@
 # bzl
 
-> Terminal UI for browsing and executing Bazel `genrule` targets.
+> Terminal UI for browsing and executing Bazel targets.
+
+![demo-1](images/demo-1.png)
+![demo-2](images/demo-2.png)
 
 ## Install
 
