@@ -1,6 +1,6 @@
 [project]
 name = "bzl"
-version = "1.2.1"
+version = "2.0.0"
 description = "Terminal UI for browsing and executing Bazel genrule targets"
 requires-python = ">=3.9"
 dependencies = [
