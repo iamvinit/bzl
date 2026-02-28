@@ -3,7 +3,7 @@
 
 > Terminal UI for browsing and executing Bazel targets.
 
-![demo-2](images/demo-2.png)
+![demo-2](https://raw.githubusercontent.com/iamvinit/bzl/refs/heads/main/images/demo-2.png)
 
 ## Install
 
