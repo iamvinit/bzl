@@ -1,10 +1,6 @@
 # bzl
 
 > Terminal UI for browsing and executing Bazel `genrule` targets.
-````markdown
-# bzl
-
-> Terminal UI for browsing and executing Bazel `genrule` targets.
 
 ## Install
 
@@ -64,9 +60,6 @@ kinds = genrule,test_rule
 | `Ctrl+F` | Refresh Bazel query |
 | `Ctrl+K` | Select target rules (`genrule`, `test_rule`, etc.) |
 | `Esc` | Go back (or Quit if on main screen) |
-
-
-````
 
 ## Note
 
