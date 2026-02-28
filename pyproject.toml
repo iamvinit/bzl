@@ -2,6 +2,7 @@
 name = "bzl"
 version = "2.0.0"
 description = "Terminal UI for browsing and executing Bazel genrule targets"
+readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "textual>=0.50.0",
