@@ -1,3 +1,5 @@
+[![PyPI version](https://img.shields.io/pypi/v/bzl.svg)](https://pypi.org/project/bzl/)
+[![Github Release Version](https://github.com/iamvinit/bzl/actions/workflows/release.yml/badge.svg)](https://github.com/iamvinit/bzl/actions/workflows/release.yml)
 # bzl
 
 > Terminal UI for browsing and executing Bazel `genrule` targets.
