@@ -1,23 +1,19 @@
-[![PyPI version](https://img.shields.io/pypi/v/bzl.svg)](https://pypi.org/project/bzl/)
-[![Github Release Version](https://github.com/iamvinit/bzl/actions/workflows/release.yml/badge.svg)](https://github.com/iamvinit/bzl/actions/workflows/release.yml)
 # bzl
 
 > Terminal UI for browsing and executing Bazel `genrule` targets.
 
 ## Install
 
-Install the latest release directly from GitHub:
+Install the latest release directly from PyPI:
 
 ```bash
-pip install https://github.com/iamvinit/bzl/releases/latest/download/bzl-*-py3-none-any.whl
+pip install bzl
 ```
 
-Or using pipx:
+Or using pipx (recommended):
 ```bash
-pipx install https://github.com/iamvinit/bzl/releases/latest/download/bzl-*-py3-none-any.whl
+pipx install bzl
 ```
-
-For a specific version, visit [GitHub Releases](https://github.com/iamvinit/bzl/releases) and substitute the version number.
 
 ## Usage
 
