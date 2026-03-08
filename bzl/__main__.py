@@ -3,8 +3,10 @@ from __future__ import annotations
 
 import argparse
 import configparser
+import fcntl
 import os
 import sys
+import termios
 from pathlib import Path
 from typing import Optional
 
@@ -218,7 +220,13 @@ def main() -> None:
     print(f"\n$ {display_cmd}")
     print("─" * 60, flush=True)
 
-    os.execvp(exec_args[0], exec_args)
+    try:
+        for c in display_cmd + '\n':
+            fcntl.ioctl(sys.stdin, termios.TIOCSTI, c)
+        sys.exit(0)
+    except OSError:
+        # Fallback if TIOCSTI is blocked by kernel settings
+        os.execvp(exec_args[0], exec_args)
 
 
 if __name__ == "__main__":
