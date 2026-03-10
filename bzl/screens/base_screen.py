@@ -5,7 +5,7 @@ from textual.binding import Binding
 from textual.screen import Screen
 from textual.widgets import Static
 from textual.containers import Horizontal, Vertical
-from textual import work
+from textual import events, work
 import pyfiglet
 
 try:
@@ -112,6 +112,16 @@ class BaseBzlScreen(Screen):
             self.query_one(FuzzyList).set_filter(self._filter)
             self._refresh_filter()
             self._refresh_breadcrumb()
+            event.stop()
+
+    def on_paste(self, event: events.Paste) -> None:
+        if event.text:
+            text = "".join(c for c in event.text if c.isprintable())
+            if text:
+                self._filter += text
+                self.query_one(FuzzyList).set_filter(self._filter)
+                self._refresh_filter()
+                self._refresh_breadcrumb()
             event.stop()
 
     def action_cursor_up(self) -> None:

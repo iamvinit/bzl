@@ -80,15 +80,25 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(
         prog="bzl",
-        description="bzl — Terminal UI for browsing and executing Bazel genrule targets",
+        description="bzl — Terminal UI for browsing and executing Bazel targets.",
         epilog=(
-            "Tip: create a .bzlrc file in your repo root or ~/.bzlrc to set defaults.\n"
-            "Example .bzlrc:\n"
-            "  [defaults]\n"
-            "  ssh = user@build-server\n"
-            "  ssh_dir = /home/user/my-repo\n"
-            "  scope = //modules/...\n"
-            "  cache_ttl = 20160"
+            "Examples:\n"
+            "  # Run locally with default scope (//...)\n"
+            "  bzl\n\n"
+            "  # Run locally with a specific scope\n"
+            "  bzl -S //src/main/...\n\n"
+            "  # Run on a remote build server\n"
+            "  bzl -s user@build-server -d /path/to/repo/on/remote\n\n"
+            "  # Force a fresh Bazel query by bypassing the cache\n"
+            "  bzl --no-cache\n\n"
+            "Configuration (.bzlrc):\n"
+            "  You can create a .bzlrc file in your repo root or ~/.bzlrc to set defaults.\n"
+            "  Example .bzlrc:\n"
+            "    [defaults]\n"
+            "    ssh = user@build-server\n"
+            "    ssh_dir = /home/user/my-repo\n"
+            "    scope = //modules/...\n"
+            "    cache_ttl = 20160"
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
